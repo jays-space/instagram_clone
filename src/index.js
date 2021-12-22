@@ -9,6 +9,9 @@ import { firebase, fieldValue } from "./lib/firebase";
 //CONTEXT
 import FirebaseContext from "./context/firebase";
 
+//STYLES
+import "./styles/app.css";
+
 ReactDOM.render(
   <FirebaseContext.Provider value={{ firebase, fieldValue }}>
     <BrowserRouter>

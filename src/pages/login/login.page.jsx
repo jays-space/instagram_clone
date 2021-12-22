@@ -23,7 +23,11 @@ const LoginPage = () => {
   // login functionality
   const handleLogin = () => {};
 
-  return <p>Login Page</p>;
+  return (
+    <div className="container flex mx-auto max-w-screen-md items-center h-screen bg-black">
+      <p>Login Page</p>
+    </div>
+  );
 };
 
 export default LoginPage;
