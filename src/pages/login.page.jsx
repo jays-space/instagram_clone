@@ -1,13 +1,13 @@
 import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import FirebaseContext from "../../context/firebase";
+import FirebaseContext from "../context/firebase.context";
 
 //CONSTANTS
-import { DASHBOARD, SIGN_UP } from "../../constants/routes.constants";
+import { DASHBOARD, SIGN_UP } from "../constants/routes.constants";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { signinWithEmailAndPassword, auth } = useContext(FirebaseContext);
+  const { signInWithEmailAndPassword, auth } = useContext(FirebaseContext);
 
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -29,14 +29,13 @@ const LoginPage = () => {
 
     try {
       // send email and password to firebase then route to main page
-      await signinWithEmailAndPassword(auth, emailAddress, password);
+      await signInWithEmailAndPassword(auth, emailAddress, password);
       navigate(DASHBOARD, { replace: true });
     } catch (error) {
       // clear state and set error message as error
       setEmailAddress("");
       setPassword("");
       setError(error.message);
-      console.log("error: ", error);
     }
   };
 
@@ -69,20 +68,22 @@ const LoginPage = () => {
           <form onSubmit={handleLogin} method="POST">
             {/* email input */}
             <input
-              aria-label="Enter you email address"
+              aria-label="Enter your email address"
               type="text"
               placeholder="Email address"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
               onChange={({ target }) => setEmailAddress(target.value)}
+              value={emailAddress}
             />
 
             {/* password input */}
             <input
-              aria-label="Enter you password"
+              aria-label="Enter your password"
               type="password"
               placeholder="Password"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
               onChange={({ target }) => setPassword(target.value)}
+              value={password}
             />
 
             {/* submit button */}
@@ -93,7 +94,7 @@ const LoginPage = () => {
                 isInvalid && "opacity-50"
               }`}
             >
-              Sign in
+              Login
             </button>
           </form>
         </div>
