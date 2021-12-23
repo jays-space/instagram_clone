@@ -13,7 +13,7 @@ import { DASHBOARD, LOGIN } from "../constants/routes.constants";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const { createUserWithEmailAndPassword, auth, db } =
+  const { createUserWithEmailAndPassword, auth } =
     useContext(FirebaseContext);
   const { collection, addDoc } = firestore;
 
@@ -55,9 +55,9 @@ const SignUpPage = () => {
 
         // TODO: createdUserResult.user.updateProfile is not a function
         // update created user in auth with username (displayName)
-        await createdUserResult.user.updateProfile({
-          displayName: username,
-        });
+        // await createdUserResult.user.updateProfile({
+        //   displayName: username,
+        // });
 
         //firebase user collection (create a new user document)
         await addDoc(collection(db, "users"), {
