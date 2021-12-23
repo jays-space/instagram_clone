@@ -13,10 +13,12 @@ import FirebaseContext from "./context/firebase";
 import "./styles/app.css";
 
 ReactDOM.render(
-  <FirebaseContext.Provider value={{ firebase, fieldValue }}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </FirebaseContext.Provider>,
+  <React.StrictMode>
+    <FirebaseContext.Provider value={{ firebase, fieldValue }}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </FirebaseContext.Provider>
+  </React.StrictMode>,
   document.getElementById("root")
 );
