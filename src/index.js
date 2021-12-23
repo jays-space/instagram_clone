@@ -4,7 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 //FIREBASE
-import { firebase, fieldValue } from "./lib/firebase";
+import { fieldValue, signinWithEmailAndPassword, auth } from "./lib/firebase";
 
 //CONTEXT
 import FirebaseContext from "./context/firebase";
@@ -14,7 +14,9 @@ import "./styles/app.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{ firebase, fieldValue }}>
+    <FirebaseContext.Provider
+      value={{ auth, signinWithEmailAndPassword, fieldValue }}
+    >
       <BrowserRouter>
         <App />
       </BrowserRouter>

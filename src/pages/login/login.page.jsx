@@ -7,7 +7,7 @@ import { DASHBOARD, SIGN_UP } from "../../constants/routes.constants";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { firebase } = useContext(FirebaseContext);
+  const { signinWithEmailAndPassword, auth } = useContext(FirebaseContext);
 
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -28,14 +28,15 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      // send email and passwordn to firebase then route to main page
-      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+      // send email and password to firebase then route to main page
+      await signinWithEmailAndPassword(auth, emailAddress, password);
       navigate(DASHBOARD, { replace: true });
     } catch (error) {
       // clear state and set error message as error
       setEmailAddress("");
       setPassword("");
       setError(error.message);
+      console.log("error: ", error);
     }
   };
 
