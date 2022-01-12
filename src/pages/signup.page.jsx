@@ -11,10 +11,12 @@ import { doesUsernameExist } from "../services/firebase.services";
 //CONSTANTS
 import { DASHBOARD, LOGIN } from "../constants/routes.constants";
 
+//HELPERS
+import { UpdateDisplayName } from "../helpers/update-profile.helper";
+
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const { createUserWithEmailAndPassword, auth } =
-    useContext(FirebaseContext);
+  const { createUserWithEmailAndPassword, auth } = useContext(FirebaseContext);
   const { collection, addDoc } = firestore;
 
   const [username, setUsername] = useState("");
@@ -53,11 +55,8 @@ const SignUpPage = () => {
           password
         );
 
-        // TODO: createdUserResult.user.updateProfile is not a function
-        // update created user in auth with username (displayName)
-        // await createdUserResult.user.updateProfile({
-        //   displayName: username,
-        // });
+        // update created user in auth with displayName === username
+        UpdateDisplayName(username);
 
         //firebase user collection (create a new user document)
         await addDoc(collection(db, "users"), {
