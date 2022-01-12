@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 //COMPONENTS
 import Header from "../components/header.component";
-import Sidebar from "../components/sidebar.component";
+import Sidebar from "../components/sidebar";
 import Timeline from "../components/timeline.component";
 
 const DashboardPage = () => {

@@ -16,7 +16,7 @@ export const doesUsernameExist = async (username) => {
 };
 
 /*
- * Checks and returns a user document where the document.userId matches the userId passed as a paramater. The result is spread into an object
+ * Checks firestore and returns a user document where the document.userId matches the userId passed as a paramater. The result is spread into an object
  */
 export const getUserByUserId = async (userId) => {
   const { collection, query, where, getDocs } = firestore;
