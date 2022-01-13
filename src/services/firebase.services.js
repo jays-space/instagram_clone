@@ -1,5 +1,15 @@
 import { firestore, db } from "../lib/firebase.lib.js";
-const { collection, query, where, getDocs, limit } = firestore;
+const {
+  collection,
+  query,
+  where,
+  getDocs,
+  limit,
+  updateDoc,
+  doc,
+  arrayRemove,
+  arrayUnion,
+} = firestore;
 
 /*
     * Checks the db if the username exists. 
@@ -30,10 +40,10 @@ export const getUserByUserId = async (userId) => {
 };
 
 /**
- * 
- * @param {*} userId :current user's uid 
- * @param {*} following : array of uid's that are currently being followed by the current user
- * @returns an array of all users (limited to 10), then filters out current user's uid and the user id's of all currently followed users.
+ *
+ ** userId :current user's uid
+ ** array of uid's that are currently being followed by the current user
+ ** returns an array of all users (limited to 10), then filters out current user's uid and the user id's of all currently followed users.
  */
 export const getSuggestedProfiles = async (userId, following) => {
   const q = query(collection(db, "users"), limit(10));
@@ -47,4 +57,43 @@ export const getSuggestedProfiles = async (userId, following) => {
       (profile) =>
         profile.userId !== userId && !following.includes(profile.userId)
     );
+};
+
+export const updateCurrentUserFollowing = async (
+  profileId, //* uid of user requested to be followed by currentUser
+  currentUserDocId, //* currentUser uid
+  isCurrentlyFollowing //* boolean -> is currentUser currently following requested profile
+) => {
+  const docRef = doc(db, "users", currentUserDocId);
+  try {
+    await updateDoc(docRef, {
+      following: isCurrentlyFollowing
+        ? arrayRemove(profileId)
+        : arrayUnion(profileId),
+    });
+    return true;
+  } catch (error) {
+    console.log("error: ", error.message);
+    return false;
+  }
+};
+
+export const updateFollowedUserFollowers = async (
+  profileDocId, //* document id of requested profile
+  currentUserId, //* currentUser uid
+  isCurrentlyFollower //* boolean -> is requested profile currently being followed by currentUser
+) => {
+  const docRef = doc(db, "users", profileDocId);
+
+  try {
+    await updateDoc(docRef, {
+      followers: isCurrentlyFollower
+        ? arrayRemove(currentUserId)
+        : arrayUnion(currentUserId),
+    });
+    return true;
+  } catch (error) {
+    console.log("error: ", error.message);
+    return false;
+  }
 };
