@@ -142,3 +142,11 @@ export const updatePhotoLikes = async (docId, toggleLiked, userId) => {
     likes: toggleLiked ? arrayRemove(userId) : arrayUnion(userId),
   });
 };
+
+export const submitComment = async (docId, displayName, comment) => {
+  const docRef = doc(db, "photos", docId); //* get firestore doc reference
+
+  await updateDoc(docRef, {
+    comments: arrayUnion({ displayName, comment }),
+  });
+};

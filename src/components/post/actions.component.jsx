@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import propTypes from "prop-types";
 
 // CONTEXT
-import FirebaseContext from "../../context/firebase.context";
 import UserContext from "../../context/user.context";
 
 //SERVICES
@@ -27,6 +26,7 @@ const PostActions = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
     <>
       <div className="flex justify-between p-4">
         <div className="flex">
+            {/* like icon */}
           <svg
             onClick={handleToggleLiked}
             onKeyDown={(event) => {
@@ -50,6 +50,8 @@ const PostActions = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
               d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
             />
           </svg>
+
+          {/* comment icon */}
           <svg
             onClick={handleFocus}
             onKeyDown={(event) => {
