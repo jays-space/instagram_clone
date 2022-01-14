@@ -19,7 +19,7 @@ import FirebaseContext from "./context/firebase.context";
 //STYLES
 import "./styles/app.css";
 
-const { FieldValue } = firestore;
+const { arrayRemove, arrayUnion, doc, updateDoc } = firestore;
 const { signInWithEmailAndPassword, createUserWithEmailAndPassword } =
   authentication;
 
@@ -30,7 +30,10 @@ ReactDOM.render(
         auth,
         signInWithEmailAndPassword,
         createUserWithEmailAndPassword,
-        FieldValue,
+        updateDoc,
+        doc,
+        arrayRemove,
+        arrayUnion,
       }}
     >
       <BrowserRouter>

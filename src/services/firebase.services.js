@@ -113,6 +113,10 @@ export const getPhotos = async (userId, following) => {
   const photosWithUserDetails = await Promise.all(
     userFollowedPhotos.map(async (photo) => {
       let userLikedPhoto = false;
+
+      /**
+       ** if currentUser has liked the photo (likes array from 'photo' firestore includes currentUser's uid), set userLikedPhoto true, else leave as false
+       */
       if (photo.likes.includes(userId)) {
         userLikedPhoto = true;
       }
@@ -122,11 +126,19 @@ export const getPhotos = async (userId, following) => {
       return {
         username,
         ...photo,
-        userLikedPhoto,
+        userLikedPhoto, //* pass bool into obj
       };
     })
   );
 
-  return photosWithUserDetails
+  return photosWithUserDetails;
+};
 
+export const updatePhotoLikes = async (docId, toggleLiked, userId) => {
+  const docRef = doc(db, "photos", docId); //* get firestore doc reference
+
+  //* update likes array in firestore if toggleLiked is true
+  await updateDoc(docRef, {
+    likes: toggleLiked ? arrayRemove(userId) : arrayUnion(userId),
+  });
 };
