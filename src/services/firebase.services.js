@@ -97,3 +97,36 @@ export const updateFollowedUserFollowers = async (
     return false;
   }
 };
+
+export const getPhotos = async (userId, following) => {
+  const q = query(collection(db, "photos"), where("userId", "in", following)); //* go to 'photos' collection and get an array of all photos where the userId is in 'following' array
+
+  const result = await getDocs(q);
+
+  //* get photos
+  const userFollowedPhotos = result.docs.map((photo) => ({
+    ...photo.data(),
+    docId: photo.id,
+  }));
+
+  //* check if current user likes photo(s), then get uploader's (user) data if true
+  const photosWithUserDetails = await Promise.all(
+    userFollowedPhotos.map(async (photo) => {
+      let userLikedPhoto = false;
+      if (photo.likes.includes(userId)) {
+        userLikedPhoto = true;
+      }
+
+      const userWhoUploadedPhoto = await getUserByUserId(photo.userId); //* get user who posted photo
+      const { username } = userWhoUploadedPhoto[0];
+      return {
+        username,
+        ...photo,
+        userLikedPhoto,
+      };
+    })
+  );
+
+  return photosWithUserDetails
+
+};
