@@ -14,6 +14,7 @@ import {
   NOT_FOUND,
   SIGN_UP,
 } from "./constants/routes.constants";
+import ProtectedRoute from "./helpers/protected.route";
 
 // PAGES
 const LoginPage = lazy(() => import("./pages/login.page.jsx"));
@@ -33,7 +34,15 @@ function App() {
     >
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route path={DASHBOARD} element={<DashboardPage />} />
+          <Route
+            path={DASHBOARD}
+            exact
+            element={
+              <ProtectedRoute user={user}>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path={LOGIN} element={<LoginPage />} />
           <Route path={SIGN_UP} element={<SignUpPage />} />
           <Route path={NOT_FOUND} element={<NotFoundPage />} />
