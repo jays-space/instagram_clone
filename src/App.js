@@ -14,7 +14,8 @@ import {
   NOT_FOUND,
   SIGN_UP,
 } from "./constants/routes.constants";
-import ProtectedRoute from "./helpers/protected.route";
+import ProtectedRoute from "./helpers/protected-route.helper";
+import IsUserLoggedIn from "./helpers/is-user-logged-in.helper";
 
 // PAGES
 const LoginPage = lazy(() => import("./pages/login.page.jsx"));
@@ -43,8 +44,22 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path={LOGIN} element={<LoginPage />} />
-          <Route path={SIGN_UP} element={<SignUpPage />} />
+          <Route
+            path={LOGIN}
+            element={
+              <IsUserLoggedIn user={user} loggedInPath={DASHBOARD}>
+                <LoginPage />
+              </IsUserLoggedIn>
+            }
+          />
+          <Route
+            path={SIGN_UP}
+            element={
+              <IsUserLoggedIn user={user} loggedInPath={DASHBOARD}>
+                <SignUpPage />
+              </IsUserLoggedIn>
+            }
+          />
           <Route path={NOT_FOUND} element={<NotFoundPage />} />
         </Routes>
       </Suspense>
