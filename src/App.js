@@ -1,5 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 //CONTEXT
 import UserContext from "./context/user.context";
@@ -33,7 +35,18 @@ function App() {
         user,
       }}
     >
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            <TailSpin
+              arialLabel="loading-indicator"
+              height={40}
+              width={40}
+              color="#005c98"
+            />
+          </div>
+        }
+      >
         <Routes>
           <Route
             path={DASHBOARD}
