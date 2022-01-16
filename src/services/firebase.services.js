@@ -25,6 +25,18 @@ export const doesUsernameExist = async (username) => {
 };
 
 /*
+    * Checks the db if the username exists. 
+
+    * Queries the users collection for any usernames matching the submitted username and returns the result as an array of objects. There should always be up to one result in the array. Checks the array length to see if there exists a document. Returns the array with user if it exists
+*/
+export const getUserByUsername = async (username) => {
+  const q = query(collection(db, "users"), where("username", "==", username));
+
+  const result = await getDocs(q);
+  return result.docs.map((user) => ({ ...user.data(), docId: user.id }));
+};
+
+/*
  * Checks firestore and returns a user document where the document.userId matches the userId passed as a paramater. The result is spread into an object
  */
 export const getUserByUserId = async (userId) => {
@@ -134,6 +146,20 @@ export const getPhotos = async (userId, following) => {
   return photosWithUserDetails;
 };
 
+export const getPhotosByUsername = async (username) => {
+  const [user] = await getUserByUsername(username);
+  const q = query(
+    collection(db, "photos"),
+    where("userId", "==", user?.userId)
+  );
+  const result = await getDocs(q);
+
+  return result?.docs?.map((photo) => ({
+    ...photo.data(),
+    docId: photo.id,
+  }));
+};
+
 export const updatePhotoLikes = async (docId, toggleLiked, userId) => {
   const docRef = doc(db, "photos", docId); //* get firestore doc reference
 
@@ -149,4 +175,30 @@ export const submitComment = async (docId, displayName, comment) => {
   await updateDoc(docRef, {
     comments: arrayUnion({ displayName, comment }),
   });
+};
+
+export const isUserFollowingProfile = async (
+  currentUserUsername, //current user
+  profileUserId
+) => {
+  /**
+   ** query: finds all documents in 'users' where username is currentUserUsername (i.e: jay) && 'following' array contains profileUserId (i.e: 2). 
+
+   ** if either condition does not match, return default {}
+
+   ** will return up to one document as the usernames in firestore are unique
+   */
+  const q = query(
+    collection(db, "users"),
+    where("username", "==", currentUserUsername),
+    where("following", "array-contains", profileUserId)
+  );
+  const intermediateResult = await getDocs(q);
+
+  const [response = {}] = intermediateResult?.docs?.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return response;
 };

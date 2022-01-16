@@ -14,6 +14,7 @@ import {
   DASHBOARD,
   LOGIN,
   NOT_FOUND,
+  PROFILE,
   SIGN_UP,
 } from "./constants/routes.constants";
 import ProtectedRoute from "./helpers/protected-route.helper";
@@ -24,6 +25,7 @@ const LoginPage = lazy(() => import("./pages/login.page.jsx"));
 const SignUpPage = lazy(() => import("./pages/signup.page.jsx"));
 const NotFoundPage = lazy(() => import("./pages/not-found.page.jsx"));
 const DashboardPage = lazy(() => import("./pages/dashboard.page.jsx"));
+const ProfilePage = lazy(() => import("./pages/profile.page.jsx"));
 
 function App() {
   //** execute uaeAuthListener and return the user if there is an authenticated user
@@ -54,6 +56,15 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PROFILE}
+            exact
+            element={
+              <ProtectedRoute user={user}>
+                <ProfilePage />
               </ProtectedRoute>
             }
           />

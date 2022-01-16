@@ -470,11 +470,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mr-8 {
+  margin-right: 2rem;
+}
 .flex {
   display: flex;
 }
 .grid {
   display: grid;
+}
+.h-screen {
+  height: 100vh;
 }
 .h-16 {
   height: 4rem;
@@ -484,9 +490,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .h-8 {
   height: 2rem;
-}
-.h-screen {
-  height: 100vh;
 }
 .h-2 {
   height: 0.5rem;
