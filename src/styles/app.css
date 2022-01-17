@@ -473,6 +473,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mr-8 {
   margin-right: 2rem;
 }
+.mr-10 {
+  margin-right: 2.5rem;
+}
 .flex {
   display: flex;
 }
@@ -497,6 +500,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-4 {
   height: 1rem;
 }
+.h-40 {
+  height: 10rem;
+}
 .w-full {
   width: 100%;
 }
@@ -517,6 +523,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-16 {
   width: 4rem;
+}
+.w-40 {
+  width: 10rem;
 }
 .max-w-screen-lg {
   max-width: 1024px;
@@ -649,6 +658,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .font-bold {
   font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
 }
 .uppercase {
   text-transform: uppercase;

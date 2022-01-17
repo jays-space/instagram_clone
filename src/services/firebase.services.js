@@ -195,7 +195,7 @@ export const isUserFollowingProfile = async (
   );
   const intermediateResult = await getDocs(q);
 
-  const [response = {}] = intermediateResult?.docs?.map((item) => ({
+  const [response = null] = intermediateResult?.docs?.map((item) => ({
     ...item.data(),
     docId: item.id,
   }));
