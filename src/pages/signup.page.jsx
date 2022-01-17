@@ -61,7 +61,7 @@ const SignUpPage = () => {
         });
 
         //firebase user collection (create a new user document)
-        const res = await addDoc(collection(db, "users"), {
+        await addDoc(collection(db, "users"), {
           userId: createdUserResult.user.uid,
           username: username.toLowerCase(),
           fullName,
@@ -69,6 +69,7 @@ const SignUpPage = () => {
           following: [],
           followers: [],
           dateCreated: Date.now(),
+          avatar: false,
         });
 
         navigate(DASHBOARD, { replace: true });

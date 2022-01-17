@@ -42,6 +42,7 @@ const Suggestions = ({ userId, following, currentUserDocId }) => {
             profileId={profile.userId}
             currentUserId={userId}
             currentUserDocId={currentUserDocId}
+            avatar={profile?.avatar}
           />
         ))}
       </div>

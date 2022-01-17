@@ -42,7 +42,7 @@ const ProfilePageHeader = ({
     setFollowerCount({
       followerCount: isFollowingProfile ? followerCount - 1 : followerCount + 1,
     });
-    
+
     await toggleFollow(
       isFollowingProfile,
       profile.docId,
@@ -62,10 +62,16 @@ const ProfilePageHeader = ({
             height={160}
             className="rounded-full h-40 w-40 flex"
           />
-        ) : (
+        ) : profile.avatar ? (
           <img
             className="rounded-full h-40 w-40 flex"
             src={`/images/avatars/${profile?.username}.jpg`}
+            alt={`${profile?.username}'s avatar`}
+          />
+        ) : (
+          <img
+            className="rounded-full h-40 w-40 flex"
+            src={`/images/avatars/default.png`}
             alt={`${profile?.username}'s avatar`}
           />
         )}

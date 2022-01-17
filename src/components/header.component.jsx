@@ -10,11 +10,14 @@ import FirebaseContext from "../context/firebase.context";
 
 //ROUTES
 import { DASHBOARD, LOGIN, SIGN_UP } from "../constants/routes.constants";
+import useUser from "../hooks/use-user.hook";
 
 const Header = () => {
   const { signOut } = authentication;
   const { user } = useContext(UserContext);
   const { auth } = useContext(FirebaseContext);
+
+  const { user: currentUser } = useUser();
 
   return (
     <header className="h-16 bg-white border-b border-gray-primary mb-8">
@@ -88,18 +91,16 @@ const Header = () => {
                 <div className="flex items-center cursor-pointer">
                   <Link to={`/p/${user.displayName}`}>
                     {/* check if there is a user image saved. If not, render default avatar, else render user avatar */}
-                    {user.displayName ? (
-                      <>
-                        <img
-                          className="rounded-full h-8 w-8 flex"
-                          src={`/images/avatars/${user.displayName}.jpg`}
-                          alt={`${user.displayName} profile`}
-                        />
-                      </>
+                    {currentUser.avatar ? (
+                      <img
+                        className="rounded-full h-8 w-8 flex"
+                        src={`/images/avatars/${user.displayName}.jpg`}
+                        alt={`${user.displayName} profile`}
+                      />
                     ) : (
                       <img
                         className="rounded-full h-8 w-8 flex"
-                        src={`/images/avatars/default.jpg`}
+                        src={`/images/avatars/default.png`}
                         alt={`${user.displayName} profile`}
                       />
                     )}

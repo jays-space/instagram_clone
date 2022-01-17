@@ -14,6 +14,7 @@ export const SuggestedProfile = ({
   profileId,
   currentUserId,
   currentUserDocId,
+  avatar,
 }) => {
   const [followed, setFollowed] = useState(false);
 
@@ -29,11 +30,19 @@ export const SuggestedProfile = ({
     <div className="flex flex-row items-center align-items justify-between">
       <div className="flex items-center justify-between">
         {/* avatar */}
-        <img
-          className="rounded-full w-8 flex mr-3"
-          src={`images/avatars/${username}.jpg`}
-          alt=""
-        />
+        {avatar ? (
+          <img
+            className="rounded-full w-8 flex mr-3"
+            src={`images/avatars/${username}.jpg`}
+            alt={`${username}'s profile`}
+          />
+        ) : (
+          <img
+            className="rounded-full w-8 flex mr-3"
+            src={`images/avatars/default.png`}
+            alt={`${username}'s profile`}
+          />
+        )}
 
         {/* username */}
         <Link to={`/p/${username}`}>
@@ -42,7 +51,6 @@ export const SuggestedProfile = ({
       </div>
 
       {/* button */}
-
       <button
         type="button"
         className="text-xs font-bold text-blue-medium"

@@ -1,4 +1,5 @@
 import { firestore, db } from "../lib/firebase.lib.js";
+// import { seedDatabase } from "../seed";
 const {
   collection,
   query,
@@ -9,7 +10,10 @@ const {
   doc,
   arrayRemove,
   arrayUnion,
+  // addDoc,
 } = firestore;
+
+// seedDatabase(db, collection, addDoc);
 
 /*
     * Checks the db if the username exists. 
@@ -47,7 +51,6 @@ export const getUserByUserId = async (userId) => {
     ...document.data(),
     docId: document.id,
   }));
-
   return userData;
 };
 

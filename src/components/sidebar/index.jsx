@@ -9,12 +9,12 @@ import Suggestions from "./suggestions.component";
 
 const Sidebar = () => {
   const {
-    user: { fullName, username, userId, following, docId },
+    user: { fullName, username, userId, following, docId, avatar },
   } = useUser();
 
   return (
     <div className="p-4">
-      <User username={username} fullName={fullName} />
+      <User username={username} fullName={fullName} avatar={avatar} />
       <Suggestions
         userId={userId}
         following={following}
