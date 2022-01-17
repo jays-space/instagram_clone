@@ -36,7 +36,7 @@ const SignUpPage = () => {
 
   // on render, change title
   useEffect(() => {
-    document.title = "Sign Up - Instagram";
+    document.title = "Sign Up - InstaClone";
   }, []);
 
   // login functionality

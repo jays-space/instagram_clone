@@ -8,7 +8,7 @@ import Timeline from "../components/timeline.component";
 const DashboardPage = () => {
   // on render, change title
   useEffect(() => {
-    document.title = "Dashboard - Instagram";
+    document.title = "Dashboard - InstaClone";
   }, []);
 
   return (

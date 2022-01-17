@@ -6,7 +6,7 @@ import Header from "../components/header.component";
 function NotFoundPage() {
   // on render, change title
   useEffect(() => {
-    document.title = "Not Found - Instagram";
+    document.title = "Not Found - InstaClone";
   }, []);
 
   return (

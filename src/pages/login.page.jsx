@@ -20,7 +20,7 @@ const LoginPage = () => {
 
   // on render, change title
   useEffect(() => {
-    document.title = "Login - Instagram";
+    document.title = "Login - InstaClone";
   }, []);
 
   // login functionality
