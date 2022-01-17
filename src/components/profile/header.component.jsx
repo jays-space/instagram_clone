@@ -7,7 +7,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 import useUser from "../../hooks/use-user.hook";
 
 //SERVICES
-import { isUserFollowingProfile } from "../../services/firebase.services";
+import {
+  isUserFollowingProfile,
+  toggleFollow,
+} from "../../services/firebase.services";
 
 const ProfilePageHeader = ({
   profile,
@@ -34,11 +37,19 @@ const ProfilePageHeader = ({
     }
   }, [user.username, profile.userId]);
 
-  const handleToggleFollow = () => {
+  const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
     setFollowerCount({
       followerCount: isFollowingProfile ? followerCount - 1 : followerCount + 1,
     });
+    
+    await toggleFollow(
+      isFollowingProfile,
+      profile.docId,
+      profile.userId,
+      user.docId,
+      user.userId
+    );
   };
 
   return (
@@ -63,7 +74,7 @@ const ProfilePageHeader = ({
       {/* name */}
       <div className="flex items-center justify-center flex-col col-span-2">
         <div className="container flex items-center">
-          <p className="text-2xl mr-4">{profile.username}</p>
+          <p className="text-2xl mr-4">{profile?.username}</p>
           {activeBtnFollow && (
             <button
               className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
@@ -81,7 +92,7 @@ const ProfilePageHeader = ({
         </div>
 
         <div className="container flex mt-4">
-          {!profile.followers || !profile.following ? (
+          {!profile?.followers || !profile?.following ? (
             <Skeleton count={1} width={677} height={24} />
           ) : (
             <>
@@ -93,7 +104,7 @@ const ProfilePageHeader = ({
                 {followerCount === 1 ? `follower` : `followers`}
               </p>
               <p className="mr-10">
-                <span className="font-bold">{profile.following?.length}</span>
+                <span className="font-bold">{profile?.following?.length}</span>
                 following
               </p>
             </>
@@ -101,10 +112,10 @@ const ProfilePageHeader = ({
         </div>
         <div className="container mt-4">
           <p className="font-medium">
-            {!profile.fullName ? (
+            {!profile?.fullName ? (
               <Skeleton count={1} height={24} />
             ) : (
-              profile.fullName
+              profile?.fullName
             )}
           </p>
         </div>

@@ -202,3 +202,22 @@ export const isUserFollowingProfile = async (
 
   return response;
 };
+
+export const toggleFollow = async (
+  isFollowingfProfile,
+  profileDocId,
+  profileUserId,
+  currentUserDocId,
+  currentUserId
+) => {
+  await updateCurrentUserFollowing(
+    profileUserId,
+    currentUserDocId,
+    isFollowingfProfile
+  ); //* update current user profile following
+  await updateFollowedUserFollowers(
+    profileDocId,
+    currentUserId,
+    isFollowingfProfile
+  ); //* update profile users profle followers
+};
