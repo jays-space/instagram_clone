@@ -1,4 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+
+//  COMPOENENTS
+import Header from "../components/header.component";
 
 function NotFoundPage() {
   // on render, change title
@@ -8,6 +11,7 @@ function NotFoundPage() {
 
   return (
     <div className="bg-gray-background">
+      <Header />
       <div className="mx-auto max-w-screen-lg">
         <p className="text-center text-2xl">Not Found!</p>
       </div>

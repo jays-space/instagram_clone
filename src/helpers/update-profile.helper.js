@@ -7,7 +7,7 @@ export const UpdateDisplayName = (displayName) => {
   const { updateProfile } = authentication;
 
   if (displayName) {
-    console.log(displayName);
+    // console.log(displayName);
     updateProfile(user, {
       displayName,
     })
@@ -18,7 +18,7 @@ export const UpdateDisplayName = (displayName) => {
       .catch((error) => {
         // An error occurred
         alert("Display Name Update Error: ", error.message);
-        console.log(error);
+        // console.log(error);
       });
   }
 };

@@ -4,6 +4,7 @@ import FirebaseContext from "../context/firebase.context";
 
 //FIREBASE
 import { firestore, db } from "../lib/firebase.lib.js";
+import { updateProfile } from "firebase/auth";
 
 //SERVICES
 import { doesUsernameExist } from "../services/firebase.services";
@@ -12,7 +13,6 @@ import { doesUsernameExist } from "../services/firebase.services";
 import { DASHBOARD, LOGIN } from "../constants/routes.constants";
 
 //HELPERS
-import { UpdateDisplayName } from "../helpers/update-profile.helper";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -56,15 +56,18 @@ const SignUpPage = () => {
         );
 
         // update created user in auth with displayName === username
-        UpdateDisplayName(username);
+        updateProfile(createdUserResult.user, {
+          displayName: username,
+        });
 
         //firebase user collection (create a new user document)
-        await addDoc(collection(db, "users"), {
+        const res = await addDoc(collection(db, "users"), {
           userId: createdUserResult.user.uid,
           username: username.toLowerCase(),
           fullName,
           emailAddress: emailAddress.toLowerCase(),
           following: [],
+          followers: [],
           dateCreated: Date.now(),
         });
 
