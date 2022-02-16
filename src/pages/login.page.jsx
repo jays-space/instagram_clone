@@ -62,10 +62,14 @@ const LoginPage = () => {
           </h1>
 
           {/* if error, display error message */}
-          {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
+          {error && (
+            <p data-testid="error" className="mb-4 text-xs text-red-primary">
+              {error}
+            </p>
+          )}
 
           {/* sign in form */}
-          <form onSubmit={handleLogin} method="POST">
+          <form onSubmit={handleLogin} method="POST" data-testid="login-form">
             {/* email input */}
             <input
               aria-label="Enter your email address"
@@ -88,6 +92,7 @@ const LoginPage = () => {
 
             {/* submit button */}
             <button
+              data-testid="login-btn"
               disabled={isInvalid}
               type="submit"
               className={`bg-blue-medium text-white w-full rounded h-8 font-bold ${

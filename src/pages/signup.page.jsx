@@ -80,7 +80,7 @@ const SignUpPage = () => {
         setError(error.message);
       }
     } else {
-      //if username exists
+      //if username already exists
       setUsername("");
       setPassword("");
       setError("That username is already taken. Please try another username.");
@@ -113,10 +113,17 @@ const SignUpPage = () => {
           </h1>
 
           {/* if error, display error message */}
-          {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
+          {error && (
+            <p
+              className="mb-4 text-xs text-red-primary"
+              data-testid="error-message"
+            >
+              {error}
+            </p>
+          )}
 
           {/* sign in form */}
-          <form onSubmit={handleSignUp} method="POST">
+          <form onSubmit={handleSignUp} method="POST" data-testid="signup-form">
             {/* username input */}
             <input
               aria-label="Enter a user name"
