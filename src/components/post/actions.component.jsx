@@ -26,8 +26,9 @@ const PostActions = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
     <>
       <div className="flex justify-between p-4">
         <div className="flex">
-            {/* like icon */}
+          {/* like icon */}
           <svg
+            data-testid={`toggle-like-${docId}`}
             onClick={handleToggleLiked}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
@@ -53,6 +54,7 @@ const PostActions = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
 
           {/* comment icon */}
           <svg
+            data-testid={`add-comment-focus-input-${docId}`}
             onClick={handleFocus}
             onKeyDown={(event) => {
               if (event.key === "Enter") {

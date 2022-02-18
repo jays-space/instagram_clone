@@ -14,8 +14,9 @@ const PostComments = ({
   const [commentsSlice, setCommentsSlice] = useState(3);
 
   const showNextComments = () => {
-    setCommentsSlice(commentsSlice + 3); 
+    setCommentsSlice(commentsSlice + 3);
   };
+
   return (
     <>
       <div className="p-4 pt-1 pb-4">
@@ -30,6 +31,7 @@ const PostComments = ({
 
         {comments.length >= 3 && commentsSlice < comments.length && (
           <button
+            data-testid={`show-next-comment-btn-${docId}`}
             className="text-sm text-gray-base mb-1 cursor-pointer focus:outline-none"
             type="button"
             onClick={showNextComments}

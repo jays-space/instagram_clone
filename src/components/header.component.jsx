@@ -26,10 +26,10 @@ const Header = () => {
           {/*logo */}
           <div className="text-gray-700 text-center flex items-center align-middle cursor-pointer">
             <h1 className="flex justify-center w-full">
-              <Link to={DASHBOARD} aria-label="Instagram logo">
+              <Link to={DASHBOARD} aria-label="Insta-Clone logo">
                 <img
                   src="/images/logo.png"
-                  alt="Instagram"
+                  alt="Insta-Clone Logo"
                   className="mt-2 w-6/12"
                 />
               </Link>
@@ -61,6 +61,7 @@ const Header = () => {
 
                 {/* signout button */}
                 <button
+                  data-testid="sign-out-btn"
                   type="button"
                   title="Sign Out"
                   onClick={() => signOut(auth)}
@@ -93,12 +94,14 @@ const Header = () => {
                     {/* check if there is a user image saved. If not, render default avatar, else render user avatar */}
                     {currentUser.avatar ? (
                       <img
+                        data-testid="current-user-avatar"
                         className="rounded-full h-8 w-8 flex"
                         src={`/images/avatars/${user.displayName}.jpg`}
                         alt={`${user.displayName} profile`}
                       />
                     ) : (
                       <img
+                        data-testid="generic-avatar"
                         className="rounded-full h-8 w-8 flex"
                         src={`/images/avatars/default.png`}
                         alt={`${user.displayName} profile`}
@@ -115,7 +118,7 @@ const Header = () => {
                     type="button"
                     className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
                   >
-                    Log In
+                    Login
                   </button>
                 </Link>
 

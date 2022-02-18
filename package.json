@@ -40,7 +40,7 @@
       "!<rootDir>/src/seed.js",
       "!<rootDir>/src/fixtures/*.js",
       "!<rootDir>/src/hooks/*.js",
-      "!<rootDir>/src/helpers/*.js",
+      "!<rootDir>/src/helpers/*",
       "!<rootDir>/src/services/*.js"
     ],
     "coverageThreshold": {

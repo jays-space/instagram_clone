@@ -32,12 +32,14 @@ export const SuggestedProfile = ({
         {/* avatar */}
         {avatar ? (
           <img
+            data-testid={`avatar-of-not-followed-user-${profileId}`}
             className="rounded-full w-8 flex mr-3"
             src={`images/avatars/${username}.jpg`}
             alt={`${username}'s profile`}
           />
         ) : (
           <img
+          data-testid={`generic-avatar-of-not-followed-user-${profileId}`}
             className="rounded-full w-8 flex mr-3"
             src={`images/avatars/default.png`}
             alt={`${username}'s profile`}
@@ -52,6 +54,7 @@ export const SuggestedProfile = ({
 
       {/* button */}
       <button
+      data-testid={`follow-${profileId}`}
         type="button"
         className="text-xs font-bold text-blue-medium"
         onClick={handleFollowUser}
