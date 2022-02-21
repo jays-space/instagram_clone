@@ -108,7 +108,7 @@ const LoginPage = () => {
         <div className="flex justify-center items-center w-full bg-white p-4 border border-gray-primary">
           <p className="text-sm">
             Don't have an account?
-            <Link to={SIGN_UP} className="ml-2 font-bold text-blue-medium">
+            <Link to={SIGN_UP} className="ml-2 font-bold text-blue-medium" data-testid='to-sign-up'>
               Sign up
             </Link>
           </p>
