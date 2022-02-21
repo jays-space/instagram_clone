@@ -20,12 +20,12 @@ const Header = () => {
   const { user: currentUser } = useUser();
 
   return (
-    <header className="h-16 bg-white border-b border-gray-primary mb-8">
+    <header className="h-16 bg-white border-b border-gray-primary mb-8 px-4 lg:px-0 w-full">
       <div className="container mx-auto max-w-screen-lg h-full">
-        <div className="flex justify-between h-full">
+        <div className="flex justify-between h-full w-full">
           {/*logo */}
-          <div className="text-gray-700 text-center flex items-center align-middle cursor-pointer">
-            <h1 className="flex justify-center w-full">
+          <div className="text-gray-700 text-center flex items-center align-middle cursor-pointer w-6/12">
+            <h1 className="flex justify-center">
               <Link to={DASHBOARD} aria-label="Insta-Clone logo">
                 <img
                   src="/images/logo.png"
@@ -37,7 +37,7 @@ const Header = () => {
           </div>
 
           {/* sign in */}
-          <div className="text-gray-700 text-center flex items-center align-items">
+          <div className="text-gray-700 text-center flex items-center align-items justify-end">
             {/* User Auth validsation: if there is a user, render link to logged in dashboard + signout button */}
             {user ? (
               <>

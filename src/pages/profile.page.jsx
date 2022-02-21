@@ -35,7 +35,7 @@ const ProfilePage = () => {
   }, [username, navigate]);
 
   return userExists ? (
-    <div className="bg-gray-background">
+    <div className="bg-gray-background px-4 lg:px-0">
       <Header />
       <div className="mx-auto max-w-screen-lg">
         {user && <UserProfile user={user} />}

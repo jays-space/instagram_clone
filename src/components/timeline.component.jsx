@@ -12,7 +12,7 @@ const Timeline = () => {
    ** render photos: check of there is a result returned. I not, render skeleton, else check if there are photos returned (photos?.length). If not, display message for user to follow others, else display photos (Post)
    */
   return (
-    <div className="container col-span-2">
+    <div className="col-span-3 md:col-span-2">
       {!photos ? (
         <Skeleton count={4} width={640} height={500} className="mb-4" />
       ) : photos?.length > 0 ? (

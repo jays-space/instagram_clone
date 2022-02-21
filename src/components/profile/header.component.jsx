@@ -60,17 +60,17 @@ const ProfilePageHeader = ({
           <Skeleton
             width={160}
             height={160}
-            className="rounded-full h-40 w-40 flex"
+            className="rounded-full h-16 w-16 md:h-20 md:w-20 lg:h-40 lg:w-40 flex"
           />
         ) : profile.avatar ? (
           <img
-            className="rounded-full h-40 w-40 flex"
+            className="rounded-full h-16 w-16 md:h-20 md:w-20 lg:h-40 lg:w-40 flex"
             src={`/images/avatars/${profile?.username}.jpg`}
             alt={`${profile?.username}'s avatar`}
           />
         ) : (
           <img
-            className="rounded-full h-40 w-40 flex"
+            className="rounded-full h-16 w-16 md:h-20 md:w-20 lg:h-40 lg:w-40 flex"
             src={`/images/avatars/default.png`}
             alt={`${profile?.username}'s avatar`}
           />
@@ -97,7 +97,7 @@ const ProfilePageHeader = ({
           )}
         </div>
 
-        <div className="container flex mt-4">
+        <div className="container flex mt-4 flex-col lg:flex-row">
           {!profile?.followers || !profile?.following ? (
             <Skeleton count={1} width={677} height={24} />
           ) : (

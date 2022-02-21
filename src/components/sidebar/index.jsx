@@ -13,7 +13,7 @@ const Sidebar = () => {
   } = useUser();
 
   return (
-    <div className="p-4">
+    <div className="hidden md:block p-4">
       <User username={username} fullName={fullName} avatar={avatar} />
       <Suggestions
         userId={userId}
